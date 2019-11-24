@@ -148,6 +148,7 @@
     <ClCompile Include="TextureCache.cpp" />
     <ClCompile Include="Timing.cpp" />
     <ClCompile Include="TurorialScreen.cpp" />
+    <ClCompile Include="VictoryScreen.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="Timing.h" />
     <ClInclude Include="TurorialScreen.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="VictoryScreen.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

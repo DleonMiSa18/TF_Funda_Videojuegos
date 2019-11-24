@@ -6,3 +6,4 @@ const int SCREEN_INDEX_GAME = 1;
 const int SCREEN_INDEX_OVER = 4;
 const int SCREEN_INDEX_MEMBERS = 2;
 const int SCREEN_INDEX_TUTORIAL = 3;
+const int SCREEN_INDEX_VICTORY = 5;

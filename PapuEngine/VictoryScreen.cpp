@@ -1,18 +1,18 @@
-#include "MembersScreen.h"
+#include "VictoryScreen.h"
 #include "MyScreens.h"
 #include "Game.h"
 #include <iostream>
 
-MembersScreen::MembersScreen(Window* window) :
-	_window(window), btnbackClicked(false),isClicked(false)
+VictoryScreen::VictoryScreen(Window* window) :
+	_window(window), btngameclick(false)
 {
-	_screenIndex = SCREEN_INDEX_MEMBERS;
+	_screenIndex = SCREEN_INDEX_TUTORIAL;
 }
 
-void MembersScreen::initGUI() {
+void VictoryScreen::initGUI() {
 }
 
-void MembersScreen::initSystem() {
+void VictoryScreen::initSystem() {
 	_program.compileShaders("Shaders/colorShaderVert.txt",
 		"Shaders/colorShaderFrag.txt");
 	_program.addAtribute("vertexPosition");
@@ -21,15 +21,15 @@ void MembersScreen::initSystem() {
 	_program.linkShader();
 }
 
-void MembersScreen::destroy() {
+void VictoryScreen::destroy() {
 	delete buttom;
 	delete background;
 	delete spriteFont;
 }
 
-void MembersScreen::onExit() {}
+void VictoryScreen::onExit() {}
 
-void MembersScreen::onEntry() {
+void VictoryScreen::onEntry() {
 	initSystem();
 	initGUI();
 	camera.init(_window->getScreenWidth(), _window->getScreenHeight());
@@ -40,20 +40,19 @@ void MembersScreen::onEntry() {
 	);
 	isClicked = false;
 	_spriteBatch.init();
-	background = new Background("Textures/Integrantes.png");
-	spriteFont = new SpriteFont("Fonts/ShakaPowHollow.ttf", 64);
-	spriteFont1 = new SpriteFont("Fonts/ShakaPowHollow.ttf", 35);
-	buttom = new Buttom("Textures/btn_back.png", glm::vec2(280, 100));
-
+	background = new Background("Textures/parque1.png");
+	spriteFont = new SpriteFont("Fonts/ShakaPowHollow.ttf", 40);
+	spriteFont1 = new SpriteFont("Fonts/ShakaPowHollow.ttf", 46);
+	buttom = new Buttom("Textures/btn_back.png", glm::vec2(450, 100));
 
 }
 
-void MembersScreen::update() {
+void VictoryScreen::update() {
 	camera.update();
 	checkInput();
 }
 
-void MembersScreen::checkInput() {
+void VictoryScreen::checkInput() {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		_game->onSDLEvent(event);
@@ -66,14 +65,14 @@ void MembersScreen::checkInput() {
 		glm::vec2 coord = glm::vec2(coordenadas.x, int(coordenadas.y) % 100);
 		if (!isClicked && buttom->cliked(_game->_inputManager.getMouseCoords(), glm::vec2(_window->getScreenWidth(), _window->getScreenHeight()))) {
 			isClicked = true;
-			std::cout << "Cambio de pantalla menu" << endl;
-			_currentState = ScreenState::CHANGE_PREVIOUS;
+			std::cout << "Retorno Menu" << endl;
+			_currentState = ScreenState::CHANGE_NEXT;
 			//destroy();
 		}
 	}
 }
 
-void MembersScreen::draw() {
+void VictoryScreen::draw() {
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	_program.use();
@@ -91,14 +90,14 @@ void MembersScreen::draw() {
 
 	_spriteBatch.end();
 	_spriteBatch.renderBatch();
-	char buffer[256];
+	char buffer[50];
 	_spriteBatch.begin();
 	sprintf(
-		buffer, "Diego Miranda \n Diego Johnson \n Alexander Trujillano \n Oscar Fernandez"
+		buffer, "Has Ganado !!"
 	);
 
 	spriteFont->draw(_spriteBatch, buffer,
-		glm::vec2(250, 320), glm::vec2(0.5), 0.0f,
+		glm::vec2(300, 260), glm::vec2(0.5), 0.0f,
 		ColorRGBA(255, 0, 0, 255)
 	);
 
@@ -109,12 +108,12 @@ void MembersScreen::draw() {
 	char buffer1[256];
 	_spriteBatch.begin();
 	sprintf(
-		buffer1, "Regresar"
+		buffer1, "Menu"
 	);
 
 
 	spriteFont1->draw(_spriteBatch, buffer1,
-		glm::vec2(330, 115), glm::vec2(0.5), 0.0f,
+		glm::vec2(510, 110), glm::vec2(0.5), 0.0f,
 		ColorRGBA(255, 0, 0, 255)
 	);
 
@@ -126,16 +125,16 @@ void MembersScreen::draw() {
 	_program.unuse();
 }
 
-void MembersScreen::build() {}
+void VictoryScreen::build() {}
 
-int MembersScreen::getPreviousScreen() const {
-	return SCREEN_INDEX_MENU;
-}
-
-int MembersScreen::getNextScreen() const {
+int VictoryScreen::getPreviousScreen() const {
 	return SCREEN_INDEX_NO_SCREEN;
 }
 
-MembersScreen::~MembersScreen()
+int VictoryScreen::getNextScreen() const {
+	return SCREEN_INDEX_MENU;
+}
+
+VictoryScreen::~VictoryScreen()
 {
 }

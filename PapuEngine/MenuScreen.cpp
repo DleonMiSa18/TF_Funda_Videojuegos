@@ -42,7 +42,7 @@ void MenuScreen::onEntry() {
 	isClicked = false;
 	_spriteBatch.init();
 	background = new Background("Textures/menu1.png");
-	spriteFont = new SpriteFont("Fonts/ShakaPowHollow.ttf",64);
+	spriteFont = new SpriteFont("Fonts/ShakaPowHollow.ttf",90);
 	spriteFont1 = new SpriteFont("Fonts/ShakaPowHollow.ttf", 64);
 	buttom = new Buttom("Textures/menu_button.png", glm::vec2(280, 100));
 	buttom2 = new Buttom("Textures/menu_button.png", glm::vec2(280, 50));
@@ -103,12 +103,12 @@ void MenuScreen::draw() {
 	char buffer[256];
 	_spriteBatch.begin();
 	sprintf(
-		buffer, "Foggie"
+		buffer, "Healthy Dog"
 	);
 		
 	spriteFont->draw(_spriteBatch, buffer,
-		glm::vec2(320, 400), glm::vec2(0.5), 0.0f,
-		ColorRGBA(255, 0, 0, 255)
+		glm::vec2(240, 300), glm::vec2(0.5), 0.0f,
+		ColorRGBA(255, 255, 255, 255)
 		);
 
 	_spriteBatch.end();

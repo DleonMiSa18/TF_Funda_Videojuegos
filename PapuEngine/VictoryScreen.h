@@ -1,42 +1,32 @@
 #pragma once
 #include "IGameScreen.h"
-#include "Camera2D.h"
-#include "GLS_Program.h"
 #include "Window.h"
+#include "GLS_Program.h"
 #include "SpriteBacth.h"
-#include "GLTexture.h"
-#include "SpriteFont.h"
 #include "Background.h"
-#include "Ship.h"
-#include "Enemie.h"
-#include "Food.h"
-class EndScreen : public IGameScreen
+#include "Camera2D.h"
+#include "SpriteFont.h"
+#include "Buttom.h"
+
+using namespace std;
+
+
+class VictoryScreen: public IGameScreen
 {
 private:
-	GLS_Program _program;
-
-	Camera2D _camera2D;
+	Camera2D camera;
+	Background* background = nullptr;
 	Window* _window = nullptr;
+	bool btngameclick;
+	GLS_Program _program;
 	SpriteBacth _spriteBatch;
-	SpriteBacth _hudBach;
-	Camera2D _hudCamera;
-	SpriteFont* _spriteFont;
-	InputManager _inputManager;
-
-	Background* backGround = nullptr;
-	Ship* ship = nullptr;
-	Enemie* enemie = nullptr;
-	vector<Enemie> enemiesVector;
-
-	vector<Food> foodsVector;
 	SpriteFont* spriteFont;
+	SpriteFont* spriteFont1;
+	Buttom* buttom;
 
-	int time = 0;
-	int timetoCreate = 100;
-
-	void drawHUD();
+	bool isClicked;
 public:
-	EndScreen(Window* window);
+	VictoryScreen(Window* window);
 	virtual void build() override;
 	virtual void destroy() override;
 	virtual void onExit() override;
@@ -48,5 +38,7 @@ public:
 	virtual int getNextScreen() const override;
 	virtual int getPreviousScreen() const override;
 	virtual void checkInput() override;
-	~EndScreen();
+	~VictoryScreen();
 };
+
+

@@ -31,7 +31,9 @@ private:
 	vector<Food*> foodsVector;
 	SpriteFont* spriteFont;
 
-	int time = 0;
+	int puntaje;
+
+	int counttime = 0;
 	int timetoCreate = 100;
 
 	void drawHUD();

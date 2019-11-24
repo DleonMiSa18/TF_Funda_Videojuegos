@@ -2,14 +2,16 @@
 #include "ResourceManager.h"
 #include <random>
 #include <ctime>
-Enemie::Enemie(float _speed, std::string texture)
+Enemie::Enemie(float _speed, std::string texture, int _type)
 {
+	typeEnemie = _type;
 	speed = _speed;
-
 	std::mt19937 randomEngine(time(nullptr));
-	std::uniform_int_distribution<int>randPosY(1, 600);
-
-	position = glm::vec2(randPosY(randomEngine), 500);
+	std::uniform_int_distribution<int>randPos(1, 500);
+	if(typeEnemie == 0)position = glm::vec2(randPos(randomEngine), 500);
+	if (typeEnemie == 1)position = glm::vec2(randPos(randomEngine), -50 );
+	if (typeEnemie == 2)position = glm::vec2(600, randPos(randomEngine));
+	if (typeEnemie == 3)position = glm::vec2(-50, randPos(randomEngine));
 	textureID = ResourceManager::getTexture(texture).id;
 }
 
@@ -29,7 +31,14 @@ void Enemie::setColor(ColorRGBA color)
 
 void Enemie::update()
 {
-	position.y -= speed;
+	if (typeEnemie == 0)position.y -= speed;
+	if (typeEnemie == 1)position.y += speed;
+	if (typeEnemie == 2)position.x -= speed;
+	if (typeEnemie == 3)position.x += speed;
+}
+
+glm::vec2 Enemie::getPosition() {
+	return position;
 }
 
 Enemie::~Enemie()

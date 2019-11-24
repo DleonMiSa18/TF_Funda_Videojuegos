@@ -3,12 +3,15 @@
 #include <string>
 #include <glm/glm.hpp>
 #include "InputManager.h"
+#include"Enemie.h"
+#include"Food.h"
 
 class Ship
 {
 
 private:
 	float speed;
+	int puntaje;
 	std::string texture;
 	int textureID;
 	glm::vec2 position;
@@ -21,7 +24,10 @@ public:
 	glm::vec2 getPosition()const {
 		return position;
 	}
-	void update();
+	int getPuntaje();
+	void update(std::vector<Enemie*>& enemies, std::vector<Food*>& food);
+	bool collideWithEnemie(Enemie* enemie);
+	bool collideWithFood(Food* food);
 	~Ship();
 
 };

@@ -19,10 +19,14 @@ void App::addScreens() {
 	_playScreen = std::make_unique<PlayScreen>(&_window);
 	_membersScreen = std::make_unique<MembersScreen>(&_window);
 	_tutorialScreen = std::make_unique<TurorialScreen>(&_window);
+	_endScreen = std::make_unique<EndScreen>(&_window);
+	_victoryScreen = std::make_unique<VictoryScreen>(&_window);
 	_screenList->addScreen(_menuScreen.get());
 	_screenList->addScreen(_playScreen.get());
 	_screenList->addScreen(_membersScreen.get());
 	_screenList->addScreen(_tutorialScreen.get());
+	_screenList->addScreen(_endScreen.get());
+	_screenList->addScreen(_victoryScreen.get());
 	_screenList->setScreen(_menuScreen->getIndex());
 }
 

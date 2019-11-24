@@ -5,6 +5,8 @@
 #include "PlayScreen.h"
 #include "MembersScreen.h"
 #include "TurorialScreen.h"
+#include "EndScreen.h"
+#include "VictoryScreen.h"
 
 class App : public Game
 {
@@ -20,5 +22,7 @@ private:
 	std::unique_ptr<PlayScreen> _playScreen;
 	std::unique_ptr<MembersScreen> _membersScreen;
 	std::unique_ptr<TurorialScreen> _tutorialScreen;
+	std::unique_ptr<EndScreen> _endScreen;
+	std::unique_ptr<VictoryScreen> _victoryScreen;
 };
 
